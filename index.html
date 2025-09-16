@@ -33,15 +33,24 @@
     }
     .destinations {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
       gap: 20px;
       margin-top: 20px;
     }
     .card {
       background: white;
-      padding: 15px;
       border-radius: 10px;
       box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+      overflow: hidden;
+    }
+    .card img {
+      width: 100%;
+      height: 150px;
+      object-fit: cover;
+    }
+    .card h3 {
+      margin: 10px 0;
+      font-size: 18px;
     }
     .whatsapp-btn {
       display: inline-block;
@@ -76,13 +85,34 @@
   <section id="packages">
     <h2>Our Popular Destinations</h2>
     <div class="destinations">
-      <div class="card">🏰 Rajasthan</div>
-      <div class="card">⛰️ Uttarakhand</div>
-      <div class="card">❄️ Kashmir</div>
-      <div class="card">🏖️ Goa</div>
-      <div class="card">🌴 Kerala</div>
-      <div class="card">🏔️ Himachal</div>
-      <div class="card">🛕 Ladakh</div>
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1603262110263-fb0c6a5d4f98" alt="Rajasthan">
+        <h3>🏰 Rajasthan</h3>
+      </div>
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1603112574846-66e6f2ec59b8" alt="Uttarakhand">
+        <h3>⛰️ Uttarakhand</h3>
+      </div>
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1598620617074-812f26e3969a" alt="Kashmir">
+        <h3>❄️ Kashmir</h3>
+      </div>
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e" alt="Goa">
+        <h3>🏖️ Goa</h3>
+      </div>
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?ixlib" alt="Kerala">
+        <h3>🌴 Kerala</h3>
+      </div>
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1516483638261-f4dbaf036963" alt="Himachal">
+        <h3>🏔️ Himachal</h3>
+      </div>
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1601758123927-19486d9e8c46" alt="Ladakh">
+        <h3>🛕 Ladakh</h3>
+      </div>
     </div>
 
     <!-- WhatsApp Button -->
