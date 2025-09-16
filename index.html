@@ -15,11 +15,11 @@
     header {
       background: #0288d1;
       color: white;
-      padding: 20px;
       text-align: center;
+      padding: 15px;
     }
-    nav {
-      margin-top: 10px;
+    header h1 {
+      margin: 0;
     }
     nav a {
       color: white;
@@ -31,37 +31,35 @@
       padding: 20px;
       text-align: center;
     }
+    .destinations {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+      margin-top: 20px;
+    }
+    .card {
+      background: white;
+      padding: 15px;
+      border-radius: 10px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    }
+    .whatsapp-btn {
+      display: inline-block;
+      background: #25D366;
+      color: white;
+      padding: 12px 20px;
+      border-radius: 50px;
+      text-decoration: none;
+      font-size: 18px;
+      font-weight: bold;
+      margin-top: 20px;
+    }
     footer {
       background: #0288d1;
       color: white;
       text-align: center;
       padding: 15px;
-      margin-top: 20px;
-    }
-    ul {
-      list-style: none;
-      padding: 0;
-    }
-    ul li {
-      background: #e1f5fe;
-      margin: 8px auto;
-      padding: 12px;
-      max-width: 300px;
-      border-radius: 6px;
-    }
-    .whatsapp-btn {
-      display: inline-block;
-      margin-top: 15px;
-      padding: 12px 20px;
-      background: #25D366;
-      color: white;
-      text-decoration: none;
-      font-size: 16px;
-      border-radius: 6px;
-      font-weight: bold;
-    }
-    .whatsapp-btn:hover {
-      background: #1ebe5d;
+      margin-top: 30px;
     }
   </style>
 </head>
@@ -70,56 +68,32 @@
     <h1>🌴 Dream Holidays 🌍</h1>
     <p>Your trusted travel partner</p>
     <nav>
-      <a href="#home">Home</a>
+      <a href="#">Home</a>
       <a href="#packages">Packages</a>
-      <a href="#destinations">Destinations</a>
-      <a href="#contact">Contact</a>
     </nav>
   </header>
 
-  <section id="home">
-    <h2>Welcome to Dream Holidays</h2>
-    <p>Discover the most amazing travel packages and destinations across India 🌟</p>
-  </section>
-
   <section id="packages">
-    <h2>Our Travel Packages</h2>
-    <ul>
-      <li>Goa Beach Tour – 5 Days / 4 Nights</li>
-      <li>Kerala Backwaters – 6 Days / 5 Nights</li>
-      <li>Manali Adventure – 7 Days / 6 Nights</li>
-      <li>Jaipur Heritage Tour – 3 Days / 2 Nights</li>
-    </ul>
-  </section>
+    <h2>Our Popular Destinations</h2>
+    <div class="destinations">
+      <div class="card">🏰 Rajasthan</div>
+      <div class="card">⛰️ Uttarakhand</div>
+      <div class="card">❄️ Kashmir</div>
+      <div class="card">🏖️ Goa</div>
+      <div class="card">🌴 Kerala</div>
+      <div class="card">🏔️ Himachal</div>
+      <div class="card">🛕 Ladakh</div>
+    </div>
 
-  <section id="destinations">
-    <h2>Popular Destinations</h2>
-    <ul>
-      <li>Goa</li>
-      <li>Kerala</li>
-      <li>Manali</li>
-      <li>Jaipur</li>
-      <li>Rajasthan</li>
-      <li>Uttarakhand</li>
-      <li>Kashmir</li>
-    </ul>
-  </section>
-
-  <section id="contact">
-    <h2>Contact Us</h2>
-    <p>📞 Call: +91-9820856464</p>
-    <p>👤 Owner: Roshan Mhatre</p>
-    
-    <!-- WhatsApp button with pre-filled message -->
-    <a class="whatsapp-btn" 
-       href="https://wa.me/919820856464?text=Hello%20Dream%20Holidays,%20I%20am%20interested%20in%20your%20travel%20packages." 
-       target="_blank">
-       💬 Chat on WhatsApp
+    <!-- WhatsApp Button -->
+    <a class="whatsapp-btn" href="https://wa.me/919820856464" target="_blank">
+      💬 Chat on WhatsApp
     </a>
   </section>
 
   <footer>
-    <p>© 2025 Dream Holidays | Designed by Roshan Mhatre</p>
+    <p>Owner: Roshan Mhatre | Contact: +91-9820856464</p>
+    <p>© 2025 Dream Holidays. All Rights Reserved.</p>
   </footer>
 </body>
 </html>
