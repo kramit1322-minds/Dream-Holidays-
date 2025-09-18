@@ -1,415 +1,151 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Dream Holidays</title>
-
-  <!-- Google Fonts (optional) -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dream Holidays 🌴</title>
   <style>
-    :root{
-      --brand:#0288d1;
-      --accent:#ff5722;
-      --fab-bg:#2b67ff;
-      --fab-size:56px;
-      --fab-gap:14px;
-    }
-    *{box-sizing:border-box}
-    body{
-      margin:0;
-      font-family:Inter, Arial, sans-serif;
-      color:#222;
-      background:#f6f8fb;
-      -webkit-font-smoothing:antialiased;
-      -moz-osx-font-smoothing:grayscale;
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f7f7f7;
     }
 
-    /* Header */
-    header{
-      background:var(--brand);
-      color:#fff;
-      padding:14px 16px;
-      text-align:center;
-      position:sticky;
-      top:0;
-      z-index:30;
-    }
-    header h1{margin:0;font-weight:600;letter-spacing:0.2px}
-    nav{margin-top:8px}
-    nav a{color:#fff;text-decoration:none;margin:0 8px;font-weight:600;font-size:14px}
-
-    /* Hero */
-    .hero{
-      min-height:60vh;
-      background-image:url("https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=1600&auto=format&fit=crop");
-      background-size:cover;
-      background-position:center;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      text-align:center;
-      padding:36px 16px;
-      color:#fff;
-      position:relative;
-    }
-    .hero::after{
-      content:"";
-      position:absolute;inset:0;background:linear-gradient(to bottom rgba(0,0,0,0.35), rgba(0,0,0,0.15));
-    }
-    .hero-inner{position:relative;z-index:1;max-width:1000px}
-    .hero h2{font-size:28px;margin:0 0 10px;font-weight:700}
-    .hero p{margin:0 0 18px;font-size:16px;opacity:0.95}
-    .hero .cta{
-      display:inline-block;
-      background:var(--accent);
-      color:#fff;
-      padding:12px 18px;
-      border-radius:8px;
-      text-decoration:none;
-      font-weight:700;
+    header {
+      background: #0077cc;
+      color: white;
+      padding: 15px;
+      text-align: center;
+      font-size: 24px;
+      font-weight: bold;
     }
 
-    /* Section container */
-    .section{max-width:1100px;margin:28px auto;padding:0 16px}
-    .section h2{color:var(--brand);text-align:center;margin-bottom:14px;font-size:20px}
-
-    /* Destination card */
-    .dest-grid{
-      display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-      gap:18px;
-    }
-    .card{
-      background:#fff;border-radius:12px;overflow:hidden;box-shadow:0 8px 20px rgba(10,20,30,0.06);
-      display:flex;flex-direction:column;
-    }
-    .card .thumb{height:180px;background-size:cover;background-position:center}
-    .card .body{padding:14px;flex:1;display:flex;flex-direction:column}
-    .card h3{margin:0 0 8px;color:var(--brand);font-size:18px}
-    .card p{margin:0 0 12px;flex:1;font-size:14px;color:#444}
-    .card .btn{
-      display:inline-block;padding:10px 12px;border-radius:8px;text-decoration:none;background:#25d366;color:#fff;font-weight:700;
-      box-shadow:0 4px 10px rgba(37,211,102,0.18)
+    nav {
+      display: flex;
+      justify-content: center;
+      background: #005fa3;
+      padding: 10px;
     }
 
-    /* Gallery */
-    .gallery{
-      display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;
-    }
-    .gallery img{width:100%;height:120px;object-fit:cover;border-radius:8px;display:block}
-
-    /* Contact / About / Footer */
-    .about, .contact{background:#fff;padding:18px;border-radius:12px;box-shadow:0 8px 20px rgba(10,20,30,0.04)}
-    footer{padding:20px;text-align:center;color:#fff;background:var(--brand);margin-top:28px}
-
-    /* Floating Action Buttons (FAB) column on right */
-    .fab-wrap{
-      position:fixed;
-      right:18px;
-      bottom:30px;
-      z-index:80;
-      display:flex;
-      flex-direction:column;
-      align-items:flex-end;
-      gap:var(--fab-gap);
-      pointer-events:none;
+    nav select {
+      padding: 8px;
+      font-size: 16px;
+      border-radius: 5px;
     }
 
-    .fab{
-      width:var(--fab-size);height:var(--fab-size);
-      border-radius:50%;
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      color:#fff;
-      font-weight:700;
-      box-shadow:0 8px 20px rgba(12,24,40,0.18);
-      cursor:pointer;
-      pointer-events:auto;
-      text-decoration:none;
-      position:relative;
-      transition:transform .18s ease;
-    }
-    .fab:hover{transform:translateY(-4px)}
-    .fab.main{background:linear-gradient(135deg,var(--fab-bg),#37a1ff);font-size:26px}
-    .fab.call{background:#37c16c}
-    .fab.mail{background:#b04285}
-    .fab.fb{background:#385898}
-    .fab.chat{background:#2dafec}
-
-    /* Floating labels */
-    .fab-label{
-      background:rgba(255,255,255,0.98);
-      color:#222;
-      padding:8px 12px;
-      border-radius:8px;
-      margin-right:10px;
-      box-shadow:0 8px 16px rgba(12,24,40,0.12);
-      font-weight:600;
-      transition:transform .18s ease,opacity .18s ease;
-      transform-origin:right center;
-      white-space:nowrap;
-      opacity:0;
-      transform:translateX(8px) scale(.98);
-      pointer-events:none;
+    .gallery {
+      display: none;
+      padding: 20px;
+      text-align: center;
     }
 
-    /* Show labels when open */
-    .fab-wrap.open .fab-label{opacity:1;transform:translateX(0) scale(1);pointer-events:auto}
-
-    /* label wrapper to align items */
-    .fab-item{display:flex;align-items:center;gap:10px;pointer-events:auto}
-
-    /* small-screen tweaks */
-    @media (max-width:480px){
-      .hero h2{font-size:22px}
-      .card .thumb{height:150px}
-      .fab-wrap{right:12px;bottom:18px}
-      :root{--fab-size:52px}
+    .gallery.active {
+      display: block;
     }
+
+    .gallery img {
+      width: 300px;
+      height: 200px;
+      margin: 10px;
+      border-radius: 10px;
+      object-fit: cover;
+    }
+
+    /* Floating buttons */
+    .fab-container {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .fab {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 20px;
+      cursor: pointer;
+    }
+
+    .phone { background: green; }
+    .whatsapp { background: #25D366; }
+    .email { background: #e63946; }
+    .facebook { background: #3b5998; }
   </style>
 </head>
 <body>
+  <header>Dream Holidays 🌴</header>
 
-<header>
-  <h1>Dream Holidays ✈️</h1>
   <nav>
-    <a href="#destinations">Destinations</a>
-    <a href="#gallery">Gallery</a>
-    <a href="#about">About</a>
-    <a href="#contact">Contact</a>
+    <select id="locationSelect">
+      <option value="">-- Select Location --</option>
+      <option value="rajasthan">Rajasthan</option>
+      <option value="uttarakhand">Uttarakhand</option>
+      <option value="kashmir">Kashmir</option>
+      <option value="goa">Goa</option>
+      <option value="kerala">Kerala</option>
+    </select>
   </nav>
-</header>
 
-<!-- HERO -->
-<section class="hero" role="banner">
-  <div class="hero-inner">
-    <h2>Welcome to Dream Holidays</h2>
-    <p>Plan your perfect trip — domestic & international packages. Quick booking via WhatsApp.</p>
-    <a class="cta" href="#destinations">Explore Packages</a>
-  </div>
-</section>
-
-<!-- DESTINATIONS -->
-<section id="destinations" class="section">
-  <h2>Popular Destinations</h2>
-
-  <div class="dest-grid">
-    <!-- Card template: change image url,destination text -->
-    <div class="card" id="rajasthan">
-      <div class="thumb" style="background-image:url('https://images.unsplash.com/photo-1526778548025-fa2f459cd5c1?q=80&w=1400&auto=format&fit=crop')"></div>
-      <div class="body">
-        <h3>Rajasthan</h3>
-        <p>Royal palaces, forts, desert safaris — Jaipur, Udaipur, Jaisalmer packages available.</p>
-        <a class="btn" href="https://wa.me/919820856464?text=I%20am%20interested%20in%20Rajasthan%20packages" target="_blank" rel="noopener">Book via WhatsApp</a>
-      </div>
-    </div>
-
-    <div class="card" id="uttarakhand">
-      <div class="thumb" style="background-image:url('https://images.unsplash.com/photo-1529921879218-3d4f1ae0e9a9?q=80&w=1400&auto=format&fit=crop')"></div>
-      <div class="body">
-        <h3>Uttarakhand</h3>
-        <p>Himalayan valleys, spiritual retreats and adventure in Rishikesh, Haridwar & Valley of Flowers.</p>
-        <a class="btn" href="https://wa.me/919820856464?text=I%20am%20interested%20in%20Uttarakhand%20packages" target="_blank" rel="noopener">Book via WhatsApp</a>
-      </div>
-    </div>
-
-    <div class="card" id="kashmir">
-      <div class="thumb" style="background-image:url('https://images.unsplash.com/photo-1549887534-6d6b2fbf2b7a?q=80&w=1400&auto=format&fit=crop')"></div>
-      <div class="body">
-        <h3>Kashmir</h3>
-        <p>Houseboats, Dal Lake, Gulmarg slopes — Kashmir packages for all seasons.</p>
-        <a class="btn" href="https://wa.me/919820856464?text=I%20am%20interested%20in%20Kashmir%20packages" target="_blank" rel="noopener">Book via WhatsApp</a>
-      </div>
-    </div>
-
-    <div class="card" id="goa">
-      <div class="thumb" style="background-image:url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=1400&auto=format&fit=crop')"></div>
-      <div class="body">
-        <h3>Goa</h3>
-        <p>Sun, sand and nightlife — beach stays, water sports and coastal tours.</p>
-        <a class="btn" href="https://wa.me/919820856464?text=I%20am%20interested%20in%20Goa%20packages" target="_blank" rel="noopener">Book via WhatsApp</a>
-      </div>
-    </div>
-
-    <div class="card" id="kerala">
-      <div class="thumb" style="background-image:url('https://images.unsplash.com/photo-1528238646473-78c1d2e7bd1f?q=80&w=1400&auto=format&fit=crop')"></div>
-      <div class="body">
-        <h3>Kerala</h3>
-        <p>Backwaters, houseboats and Ayurveda — luxury and budget Kerala tours.</p>
-        <a class="btn" href="https://wa.me/919820856464?text=I%20am%20interested%20in%20Kerala%20packages" target="_blank" rel="noopener">Book via WhatsApp</a>
-      </div>
-    </div>
-
-    <div class="card" id="manali">
-      <div class="thumb" style="background-image:url('https://images.unsplash.com/photo-1546549031-2fce4a3f6c00?q=80&w=1400&auto=format&fit=crop')"></div>
-      <div class="body">
-        <h3>Manali</h3>
-        <p>Snow-capped passes, adventure sports and serene mountain valleys.</p>
-        <a class="btn" href="https://wa.me/919820856464?text=I%20am%20interested%20in%20Manali%20packages" target="_blank" rel="noopener">Book via WhatsApp</a>
-      </div>
-    </div>
-
-    <div class="card" id="dubai">
-      <div class="thumb" style="background-image:url('https://images.unsplash.com/photo-1508057198894-247b23fe5ade?q=80&w=1400&auto=format&fit=crop')"></div>
-      <div class="body">
-        <h3>Dubai</h3>
-        <p>Luxury shopping, desert safaris, Burj Khalifa views — international packages.</p>
-        <a class="btn" href="https://wa.me/919820856464?text=I%20am%20interested%20in%20Dubai%20packages" target="_blank" rel="noopener">Book via WhatsApp</a>
-      </div>
-    </div>
-
-    <div class="card" id="paris">
-      <div class="thumb" style="background-image:url('https://images.unsplash.com/photo-1502602898657-3e91760cbb34?q=80&w=1400&auto=format&fit=crop')"></div>
-      <div class="body">
-        <h3>Paris</h3>
-        <p>Romance, museums and iconic sights — Paris tour packages.</p>
-        <a class="btn" href="https://wa.me/919820856464?text=I%20am%20interested%20in%20Paris%20packages" target="_blank" rel="noopener">Book via WhatsApp</a>
-      </div>
-    </div>
-
-    <div class="card" id="singapore">
-      <div class="thumb" style="background-image:url('https://images.unsplash.com/photo-1501127122-f385ca6ddd9d?q=80&w=1400&auto=format&fit=crop')"></div>
-      <div class="body">
-        <h3>Singapore</h3>
-        <p>City breaks with theme parks, gardens and fine dining experiences.</p>
-        <a class="btn" href="https://wa.me/919820856464?text=I%20am%20interested%20in%20Singapore%20packages" target="_blank" rel="noopener">Book via WhatsApp</a>
-      </div>
-    </div>
-
-    <div class="card" id="maldives">
-      <div class="thumb" style="background-image:url('https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=1400&auto=format&fit=crop')"></div>
-      <div class="body">
-        <h3>Maldives</h3>
-        <p>Overwater bungalows, crystal clear waters and honeymoon packages.</p>
-        <a class="btn" href="https://wa.me/919820856464?text=I%20am%20interested%20in%20Maldives%20packages" target="_blank" rel="noopener">Book via WhatsApp</a>
-      </div>
-    </div>
-
-    <div class="card" id="switzerland">
-      <div class="thumb" style="background-image:url('https://images.unsplash.com/photo-1501785888041-af3ef285b470?q=80&w=1400&auto=format&fit=crop')"></div>
-      <div class="body">
-        <h3>Switzerland</h3>
-        <p>Alpine views, lakes and scenic rail journeys — luxury & adventure tours.</p>
-        <a class="btn" href="https://wa.me/919820856464?text=I%20am%20interested%20in%20Switzerland%20packages" target="_blank" rel="noopener">Book via WhatsApp</a>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-<!-- Gallery -->
-<section id="gallery" class="section">
-  <h2>Gallery</h2>
-  <div class="gallery">
-    <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=900&auto=format&fit=crop" alt="">
-    <img src="https://images.unsplash.com/photo-1526778548025-fa2f459cd5c1?q=80&w=900&auto=format&fit=crop" alt="">
-    <img src="https://images.unsplash.com/photo-1508057198894-247b23fe5ade?q=80&w=900&auto=format&fit=crop" alt="">
-    <img src="https://images.unsplash.com/photo-1529921879218-3d4f1ae0e9a9?q=80&w=900&auto=format&fit=crop" alt="">
-    <img src="https://images.unsplash.com/photo-1524492449090-1a065f1a9b17?q=80&w=900&auto=format&fit=crop" alt="">
-    <img src="https://images.unsplash.com/photo-1502602898657-3e91760cbb34?q=80&w=900&auto=format&fit=crop" alt="">
-  </div>
-</section>
-
-<!-- About -->
-<section id="about" class="section">
-  <div class="about">
-    <h2>About Dream Holidays</h2>
-    <p>Dream Holidays is a trusted travel partner led by Roshan Mhatre. We craft personalized domestic and international packages — family trips, honeymoon packages, adventure tours and corporate travel solutions.</p>
-  </div>
-</section>
-
-<!-- Contact -->
-<section id="contact" class="section">
-  <div class="contact">
-    <h2>Contact</h2>
-    <p>Owner: <strong>Roshan Mhatre</strong> — Phone: <a href="tel:+919820856464">+91-9820856464</a></p>
-    <p>Quick booking via WhatsApp is available — click any "Book via WhatsApp" button above or use the floating chat button on the right.</p>
-  </div>
-</section>
-
-<footer>
-  © 2025 Dream Holidays — Designed by Roshan Mhatre
-</footer>
-
-<!-- Floating Contact Buttons (right) -->
-<div class="fab-wrap" id="fabWrap" aria-hidden="false">
-  <!-- Close / Open main -->
-  <div class="fab-item">
-    <div class="fab-label">Close</div>
-    <button class="fab main" id="fabMain" aria-label="toggle contact">
-      ✕
-    </button>
+  <!-- Galleries -->
+  <div id="rajasthan" class="gallery">
+    <h2>Explore Rajasthan</h2>
+    <img src="https://source.unsplash.com/300x200/?rajasthan,fort" alt="">
+    <img src="https://source.unsplash.com/300x200/?rajasthan,palace" alt="">
+    <img src="https://source.unsplash.com/300x200/?rajasthan,desert" alt="">
   </div>
 
-  <!-- Chat -->
-  <div class="fab-item">
-    <div class="fab-label">Chat</div>
-    <a class="fab chat" href="https://wa.me/919820856464" target="_blank" rel="noopener" aria-label="WhatsApp chat">💬</a>
+  <div id="uttarakhand" class="gallery">
+    <h2>Explore Uttarakhand</h2>
+    <img src="https://source.unsplash.com/300x200/?uttarakhand,mountains" alt="">
+    <img src="https://source.unsplash.com/300x200/?uttarakhand,temple" alt="">
+    <img src="https://source.unsplash.com/300x200/?uttarakhand,forest" alt="">
   </div>
 
-  <!-- Facebook -->
-  <div class="fab-item">
-    <div class="fab-label">Facebook</div>
-    <a class="fab fb" href="https://facebook.com" target="_blank" rel="noopener" aria-label="Facebook">f</a>
+  <div id="kashmir" class="gallery">
+    <h2>Explore Kashmir</h2>
+    <img src="https://source.unsplash.com/300x200/?kashmir,snow" alt="">
+    <img src="https://source.unsplash.com/300x200/?kashmir,valley" alt="">
+    <img src="https://source.unsplash.com/300x200/?kashmir,lake" alt="">
   </div>
 
-  <!-- Email -->
-  <div class="fab-item">
-    <div class="fab-label">Email</div>
-    <a class="fab mail" href="mailto:info@dreamholidays.com" aria-label="send email">✉️</a>
+  <div id="goa" class="gallery">
+    <h2>Explore Goa</h2>
+    <img src="https://source.unsplash.com/300x200/?goa,beach" alt="">
+    <img src="https://source.unsplash.com/300x200/?goa,party" alt="">
+    <img src="https://source.unsplash.com/300x200/?goa,sunset" alt="">
   </div>
 
-  <!-- Phone -->
-  <div class="fab-item">
-    <div class="fab-label">Phone</div>
-    <a class="fab call" href="tel:+919820856464" aria-label="call">📞</a>
+  <div id="kerala" class="gallery">
+    <h2>Explore Kerala</h2>
+    <img src="https://source.unsplash.com/300x200/?kerala,backwaters" alt="">
+    <img src="https://source.unsplash.com/300x200/?kerala,houseboat" alt="">
+    <img src="https://source.unsplash.com/300x200/?kerala,forest" alt="">
   </div>
-</div>
 
-<script>
-  // Floating FAB toggle behavior
-  (function(){
-    const wrap = document.getElementById('fabWrap');
-    const main = document.getElementById('fabMain');
-    let open = true; // start open to show icons; you can change default
+  <!-- Floating buttons -->
+  <div class="fab-container">
+    <a href="tel:9820856464" class="fab phone">📞</a>
+    <a href="https://wa.me/9820856464" target="_blank" class="fab whatsapp">💬</a>
+    <a href="mailto:info@dreamholidays.com" class="fab email">✉️</a>
+    <a href="https://facebook.com" target="_blank" class="fab facebook">f</a>
+  </div>
 
-    function update(){
-      if(open){
-        wrap.classList.add('open');
-        main.textContent = '✕';
-        // Show main slightly smaller so child fabs visible
-        main.style.transform = 'scale(1)';
-      } else {
-        wrap.classList.remove('open');
-        main.textContent = '☰';
-        main.style.transform = 'scale(1)';
-      }
-    }
+  <script>
+    const locationSelect = document.getElementById('locationSelect');
+    const galleries = document.querySelectorAll('.gallery');
 
-    main.addEventListener('click', (e)=>{
-      open = !open;
-      update();
+    locationSelect.addEventListener('change', () => {
+      galleries.forEach(g => g.classList.remove('active'));
+      const selected = document.getElementById(locationSelect.value);
+      if (selected) selected.classList.add('active');
     });
-
-    // initialize
-    update();
-
-    // Close on scroll down small device to avoid overlap
-    let lastY = window.scrollY;
-    window.addEventListener('scroll', ()=> {
-      const y = window.scrollY;
-      if(y > lastY + 40) { // user scrolled down fast
-        wrap.classList.remove('open');
-      } else if(y < lastY - 40) {
-        wrap.classList.add('open');
-      }
-      lastY = y;
-    });
-  })();
-</script>
-
+  </script>
 </body>
 </html>
