@@ -6,146 +6,145 @@
   <title>Dream Holidays 🌴</title>
   <style>
     body {
-      margin: 0;
       font-family: Arial, sans-serif;
-      background: #f7f7f7;
+      margin: 0;
+      padding: 0;
+      text-align: center;
+      background: #f4f4f4;
     }
-
     header {
-      background: #0077cc;
+      background: #0073e6;
       color: white;
       padding: 15px;
-      text-align: center;
-      font-size: 24px;
+      font-size: 22px;
       font-weight: bold;
     }
-
-    nav {
+    select {
+      padding: 10px;
+      font-size: 16px;
+      margin: 15px;
+    }
+    h2 {
+      margin: 20px 0;
+      color: #333;
+    }
+    .gallery {
       display: flex;
+      flex-wrap: wrap;
       justify-content: center;
-      background: #005fa3;
+      gap: 15px;
       padding: 10px;
     }
-
-    nav select {
-      padding: 8px;
-      font-size: 16px;
-      border-radius: 5px;
-    }
-
-    .gallery {
-      display: none;
-      padding: 20px;
-      text-align: center;
-    }
-
-    .gallery.active {
-      display: block;
-    }
-
     .gallery img {
-      width: 300px;
-      height: 200px;
-      margin: 10px;
-      border-radius: 10px;
+      width: 250px;
+      height: 180px;
       object-fit: cover;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
     }
-
-    /* Floating buttons */
-    .fab-container {
+    .whatsapp-btn {
       position: fixed;
       bottom: 20px;
       right: 20px;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-
-    .fab {
-      width: 50px;
-      height: 50px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      background: #25D366;
       color: white;
-      font-size: 20px;
-      cursor: pointer;
+      font-size: 18px;
+      font-weight: bold;
+      padding: 12px 18px;
+      border-radius: 50px;
+      text-decoration: none;
+      box-shadow: 0 3px 6px rgba(0,0,0,0.3);
     }
-
-    .phone { background: green; }
-    .whatsapp { background: #25D366; }
-    .email { background: #e63946; }
-    .facebook { background: #3b5998; }
   </style>
 </head>
 <body>
+
   <header>Dream Holidays 🌴</header>
 
-  <nav>
-    <select id="locationSelect">
-      <option value="">-- Select Location --</option>
+  <div>
+    <select id="locationSelect" onchange="showLocation()">
+      <option value="">-- Select a Location --</option>
       <option value="rajasthan">Rajasthan</option>
       <option value="uttarakhand">Uttarakhand</option>
+      <option value="kerala">Kerala</option>
+      <option value="manali">Manali</option>
       <option value="kashmir">Kashmir</option>
       <option value="goa">Goa</option>
-      <option value="kerala">Kerala</option>
     </select>
-  </nav>
-
-  <!-- Galleries -->
-  <div id="rajasthan" class="gallery">
-    <h2>Explore Rajasthan</h2>
-    <img src="https://source.unsplash.com/300x200/?rajasthan,fort" alt="">
-    <img src="https://source.unsplash.com/300x200/?rajasthan,palace" alt="">
-    <img src="https://source.unsplash.com/300x200/?rajasthan,desert" alt="">
   </div>
 
-  <div id="uttarakhand" class="gallery">
-    <h2>Explore Uttarakhand</h2>
-    <img src="https://source.unsplash.com/300x200/?uttarakhand,mountains" alt="">
-    <img src="https://source.unsplash.com/300x200/?uttarakhand,temple" alt="">
-    <img src="https://source.unsplash.com/300x200/?uttarakhand,forest" alt="">
-  </div>
+  <h2 id="title">Explore Beautiful Destinations</h2>
+  <div class="gallery" id="gallery"></div>
 
-  <div id="kashmir" class="gallery">
-    <h2>Explore Kashmir</h2>
-    <img src="https://source.unsplash.com/300x200/?kashmir,snow" alt="">
-    <img src="https://source.unsplash.com/300x200/?kashmir,valley" alt="">
-    <img src="https://source.unsplash.com/300x200/?kashmir,lake" alt="">
-  </div>
-
-  <div id="goa" class="gallery">
-    <h2>Explore Goa</h2>
-    <img src="https://source.unsplash.com/300x200/?goa,beach" alt="">
-    <img src="https://source.unsplash.com/300x200/?goa,party" alt="">
-    <img src="https://source.unsplash.com/300x200/?goa,sunset" alt="">
-  </div>
-
-  <div id="kerala" class="gallery">
-    <h2>Explore Kerala</h2>
-    <img src="https://source.unsplash.com/300x200/?kerala,backwaters" alt="">
-    <img src="https://source.unsplash.com/300x200/?kerala,houseboat" alt="">
-    <img src="https://source.unsplash.com/300x200/?kerala,forest" alt="">
-  </div>
-
-  <!-- Floating buttons -->
-  <div class="fab-container">
-    <a href="tel:9820856464" class="fab phone">📞</a>
-    <a href="https://wa.me/9820856464" target="_blank" class="fab whatsapp">💬</a>
-    <a href="mailto:info@dreamholidays.com" class="fab email">✉️</a>
-    <a href="https://facebook.com" target="_blank" class="fab facebook">f</a>
-  </div>
+  <!-- WhatsApp button -->
+  <a class="whatsapp-btn" href="https://wa.me/919876543210" target="_blank">Chat on WhatsApp</a>
 
   <script>
-    const locationSelect = document.getElementById('locationSelect');
-    const galleries = document.querySelectorAll('.gallery');
+    const locations = {
+      rajasthan: {
+        name: "Rajasthan",
+        images: [
+          "https://upload.wikimedia.org/wikipedia/commons/1/10/Jaisalmer_Fort.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/f/fb/City_Palace_Jaipur.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/4/41/Thar_Desert.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/c/c9/Hawa_Mahal_2011.jpg"
+        ]
+      },
+      uttarakhand: {
+        name: "Uttarakhand",
+        images: [
+          "https://upload.wikimedia.org/wikipedia/commons/6/64/Nanda_Devi_peak_from_Kausani%2C_Uttarakhand.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/7/7f/Rishikesh_Bridge.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/9/96/Kedarnath_Temple_2019.jpg"
+        ]
+      },
+      kerala: {
+        name: "Kerala",
+        images: [
+          "https://upload.wikimedia.org/wikipedia/commons/5/5b/Houseboat_in_kerala.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/f/f7/Munnar_hillstation_kerala.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/9/90/Kovalam_Beach.jpg"
+        ]
+      },
+      manali: {
+        name: "Manali",
+        images: [
+          "https://upload.wikimedia.org/wikipedia/commons/2/20/Solang_Valley%2C_Manali.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/6/63/Rohtang_Pass.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/5/55/Hadimba_Temple_Manali.jpg"
+        ]
+      },
+      kashmir: {
+        name: "Kashmir",
+        images: [
+          "https://upload.wikimedia.org/wikipedia/commons/7/70/Dal_Lake_Houseboats.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/4/42/Gulmarg_valley.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/d/d7/Snow_clad_Pahalgam.jpg"
+        ]
+      },
+      goa: {
+        name: "Goa",
+        images: [
+          "https://upload.wikimedia.org/wikipedia/commons/f/fc/Baga_Beach_Goa.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/f/f1/Church_of_St_Cajetan_Goa.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/f/f5/Dudhsagar_Waterfalls.jpg"
+        ]
+      }
+    };
 
-    locationSelect.addEventListener('change', () => {
-      galleries.forEach(g => g.classList.remove('active'));
-      const selected = document.getElementById(locationSelect.value);
-      if (selected) selected.classList.add('active');
-    });
+    function showLocation() {
+      const selected = document.getElementById("locationSelect").value;
+      const gallery = document.getElementById("gallery");
+      const title = document.getElementById("title");
+
+      if (selected && locations[selected]) {
+        title.textContent = "Explore " + locations[selected].name;
+        gallery.innerHTML = locations[selected].images.map(img => `<img src="${img}" alt="${locations[selected].name}">`).join("");
+      } else {
+        title.textContent = "Explore Beautiful Destinations";
+        gallery.innerHTML = "";
+      }
+    }
   </script>
 </body>
 </html>
