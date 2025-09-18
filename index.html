@@ -1,150 +1,333 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Dream Holidays 🌴</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Dream Holidays — India Tours</title>
+  <meta name="description" content="Book curated tour packages for Rajasthan, Uttarakhand, Kashmir, Goa, and Kerala. Call, WhatsApp, or email to get itineraries and prices." />
+  <link rel="preconnect" href="https://images.unsplash.com" crossorigin />
   <style>
+    :root {
+      --brand: #0077cc;
+      --brand-dark: #005fa3;
+      --accent: #ffb703;
+      --bg: #f7f7f7;
+      --text: #1a1a1a;
+      --white: #fff;
+    }
+    * { box-sizing: border-box; }
     body {
-      font-family: Arial, sans-serif;
       margin: 0;
-      padding: 0;
-      text-align: center;
-      background: #f4f4f4;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.5;
     }
+    a { color: var(--brand-dark); text-decoration: none; }
+    a:hover { text-decoration: underline; }
     header {
-      background: #0073e6;
-      color: white;
-      padding: 15px;
-      font-size: 22px;
-      font-weight: bold;
+      background: var(--brand);
+      color: var(--white);
+      padding: 14px 16px;
     }
-    select {
-      padding: 10px;
-      font-size: 16px;
-      margin: 15px;
+    .topbar {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
     }
-    h2 {
-      margin: 20px 0;
-      color: #333;
+    .logo { font-weight: 700; font-size: 20px; }
+    .cta-bar { display: flex; gap: 10px; }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 10px 14px;
+      border-radius: 8px;
+      background: var(--white);
+      color: var(--brand-dark);
+      font-weight: 600;
+      border: 0;
+      cursor: pointer;
+      text-decoration: none;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.08);
     }
-    .gallery {
+    .btn.primary { background: var(--accent); color: #222; }
+    .hero {
+      background: linear-gradient(0deg, rgba(0,0,0,0.45), rgba(0,0,0,0.45)),
+        url('https://source.unsplash.com/1600x700/?india,travel') center/cover no-repeat;
+      color: var(--white);
+      text-align: center;
+      padding: 64px 16px;
+    }
+    .hero h1 { margin: 0 0 10px; font-size: clamp(24px, 5vw, 40px); }
+    .hero p { margin: 0 0 20px; font-size: clamp(14px, 3.2vw, 18px); opacity: 0.95; }
+    .container { max-width: 1200px; margin: 0 auto; padding: 24px 16px; }
+    .section-title { font-size: 24px; margin: 8px 0 16px; }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 16px;
+    }
+    .card {
+      background: var(--white);
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+      display: flex;
+      flex-direction: column;
+    }
+    .card img { width: 100%; height: 180px; object-fit: cover; display: block; background: #eee; }
+    .card-body { padding: 12px; display: flex; flex-direction: column; gap: 8px; }
+    .price { font-weight: 700; color: #096; }
+    /* Tabs */
+    .tabs {
+      background: var(--white);
+      border-radius: 12px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+      overflow: hidden;
+    }
+    .tablist {
       display: flex;
       flex-wrap: wrap;
-      justify-content: center;
-      gap: 15px;
+      gap: 8px;
       padding: 10px;
+      background: #f0f6fb;
     }
-    .gallery img {
-      width: 250px;
-      height: 180px;
-      object-fit: cover;
-      border-radius: 8px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    .tablist button {
+      border: 0;
+      padding: 8px 12px;
+      border-radius: 20px;
+      background: var(--white);
+      cursor: pointer;
+      font-weight: 600;
+      color: var(--brand-dark);
     }
-    .whatsapp-btn {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      background: #25D366;
-      color: white;
-      font-size: 18px;
-      font-weight: bold;
-      padding: 12px 18px;
-      border-radius: 50px;
-      text-decoration: none;
-      box-shadow: 0 3px 6px rgba(0,0,0,0.3);
+    .tablist button[aria-selected="true"] { background: var(--brand); color: var(--white); }
+    .tabpanel { display: none; padding: 14px; }
+    .tabpanel[aria-hidden="false"] { display: block; }
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 12px;
+    }
+    .gallery-grid img {
+      width: 100%; height: 160px; object-fit: cover; border-radius: 10px; background: #eee;
+    }
+    /* Testimonials */
+    .testi {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 16px;
+    }
+    .quote {
+      background: var(--white);
+      padding: 14px;
+      border-radius: 12px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+      font-style: italic;
+    }
+    /* FAQ */
+    details {
+      background: var(--white);
+      padding: 12px 14px;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+    }
+    summary { cursor: pointer; font-weight: 600; }
+    details + details { margin-top: 10px; }
+    /* Floating contact */
+    .fab-container {
+      position: fixed; bottom: 18px; right: 18px; display: flex; flex-direction: column; gap: 10px; z-index: 1000;
+    }
+    .fab {
+      width: 52px; height: 52px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      color: white; font-size: 22px; text-decoration: none; box-shadow: 0 6px 18px rgba(0,0,0,0.22);
+    }
+    .phone { background: #0a8a0a; }
+    .whatsapp { background: #25D366; }
+    .email { background: #e63946; }
+    @media (prefers-reduced-motion: reduce) {
+      * { scroll-behavior: auto; }
     }
   </style>
 </head>
 <body>
+  <header>
+    <div class="topbar">
+      <div class="logo">Dream Holidays</div>
+      <nav class="cta-bar" aria-label="Quick actions">
+        <a class="btn" href="#packages">Packages</a>
+        <a class="btn" href="#gallery">Gallery</a>
+        <a class="btn primary" href="tel:+919820856464">Call Now</a>
+      </nav>
+    </div>
+  </header>
 
-  <header>Dream Holidays 🌴</header>
+  <section class="hero" role="banner">
+    <h1>Curated India Tours</h1>
+    <p>Rajasthan forts, Kashmir valleys, Goa beaches, Kerala backwaters, and more—handcrafted itineraries for every budget.</p>
+    <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;">
+      <a class="btn primary" href="#packages">View Packages</a>
+      <a class="btn" href="https://wa.me/919820856464?text=Hi%20Dream%20Holidays%2C%20please%20share%20tour%20packages%20and%20pricing." rel="noopener" target="_blank">Chat on WhatsApp</a>
+    </div>
+  </section>
 
-  <div>
-    <select id="locationSelect" onchange="showLocation()">
-      <option value="">-- Select a Location --</option>
-      <option value="rajasthan">Rajasthan</option>
-      <option value="uttarakhand">Uttarakhand</option>
-      <option value="kerala">Kerala</option>
-      <option value="manali">Manali</option>
-      <option value="kashmir">Kashmir</option>
-      <option value="goa">Goa</option>
-    </select>
+  <main class="container">
+    <section id="packages" aria-labelledby="packages-title">
+      <h2 class="section-title" id="packages-title">Popular Packages</h2>
+      <div class="grid">
+        <article class="card">
+          <img src="https://source.unsplash.com/800x500/?rajasthan,fort" alt="Rajasthan Fort tour">
+          <div class="card-body">
+            <h3>Royal Rajasthan (5D/4N)</h3>
+            <div class="price">From ₹14,999</div>
+            <p>Jaipur, Jodhpur, Jaisalmer with guided fort visits and desert camp.</p>
+            <a class="btn" href="mailto:info@dreamholidays.com?subject=Royal%20Rajasthan%20Enquiry&body=Hi%2C%20please%20share%20itinerary%20and%20pricing%20for%20Royal%20Rajasthan%205D%2F4N.">Email details</a>
+          </div>
+        </article>
+        <article class="card">
+          <img src="https://source.unsplash.com/800x500/?kashmir,valley" alt="Kashmir Valley tour">
+          <div class="card-body">
+            <h3>Heavenly Kashmir (6D/5N)</h3>
+            <div class="price">From ₹19,999</div>
+            <p>Srinagar, Gulmarg, Pahalgam with shikara ride and gondola add-ons.</p>
+            <a class="btn" href="mailto:info@dreamholidays.com?subject=Kashmir%20Package%20Enquiry&body=Hi%2C%20please%20share%20itinerary%20and%20pricing%20for%20Kashmir%206D%2F5N.">Email details</a>
+          </div>
+        </article>
+        <article class="card">
+          <img src="https://source.unsplash.com/800x500/?goa,beach" alt="Goa Beach holiday">
+          <div class="card-body">
+            <h3>Goa Getaway (4D/3N)</h3>
+            <div class="price">From ₹11,499</div>
+            <p>North & South Goa sights, optional water sports and cruise dinner.</p>
+            <a class="btn" href="mailto:info@dreamholidays.com?subject=Goa%20Getaway%20Enquiry&body=Hi%2C%20please%20share%20itinerary%20and%20pricing%20for%20Goa%204D%2F3N.">Email details</a>
+          </div>
+        </article>
+        <article class="card">
+          <img src="https://source.unsplash.com/800x500/?kerala,backwaters" alt="Kerala Backwaters tour">
+          <div class="card-body">
+            <h3>Kerala Bliss (6D/5N)</h3>
+            <div class="price">From ₹18,499</div>
+            <p>Munnar, Alleppey houseboat, Thekkady spice trails with cultural show.</p>
+            <a class="btn" href="mailto:info@dreamholidays.com?subject=Kerala%20Bliss%20Enquiry&body=Hi%2C%20please%20share%20itinerary%20and%20pricing%20for%20Kerala%206D%2F5N.">Email details</a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="gallery" aria-labelledby="gallery-title" style="margin-top:26px;">
+      <h2 class="section-title" id="gallery-title">Gallery</h2>
+      <div class="tabs" data-tabs>
+        <div role="tablist" aria-label="Destinations" class="tablist">
+          <button role="tab" aria-selected="true" aria-controls="tab-goa" id="tab-btn-goa">Goa</button>
+          <button role="tab" aria-selected="false" aria-controls="tab-rajasthan" id="tab-btn-rajasthan">Rajasthan</button>
+          <button role="tab" aria-selected="false" aria-controls="tab-kashmir" id="tab-btn-kashmir">Kashmir</button>
+          <button role="tab" aria-selected="false" aria-controls="tab-kerala" id="tab-btn-kerala">Kerala</button>
+          <button role="tab" aria-selected="false" aria-controls="tab-uttarakhand" id="tab-btn-uttarakhand">Uttarakhand</button>
+        </div>
+        <div id="tab-goa" role="tabpanel" aria-labelledby="tab-btn-goa" class="tabpanel" aria-hidden="false">
+          <div class="gallery-grid">
+            <img src="https://source.unsplash.com/600x360/?goa,beach" alt="Goa beach">
+            <img src="https://source.unsplash.com/600x360/?goa,sunset" alt="Goa sunset">
+            <img src="https://source.unsplash.com/600x360/?goa,church" alt="Old Goa church">
+          </div>
+        </div>
+        <div id="tab-rajasthan" role="tabpanel" aria-labelledby="tab-btn-rajasthan" class="tabpanel" aria-hidden="true">
+          <div class="gallery-grid">
+            <img src="https://source.unsplash.com/600x360/?rajasthan,fort" alt="Rajasthan fort">
+            <img src="https://source.unsplash.com/600x360/?rajasthan,palace" alt="Rajasthan palace">
+            <img src="https://source.unsplash.com/600x360/?rajasthan,desert" alt="Thar desert">
+          </div>
+        </div>
+        <div id="tab-kashmir" role="tabpanel" aria-labelledby="tab-btn-kashmir" class="tabpanel" aria-hidden="true">
+          <div class="gallery-grid">
+            <img src="https://source.unsplash.com/600x360/?kashmir,valley" alt="Kashmir valley">
+            <img src="https://source.unsplash.com/600x360/?kashmir,snow" alt="Snow views">
+            <img src="https://source.unsplash.com/600x360/?kashmir,lake" alt="Dal lake">
+          </div>
+        </div>
+        <div id="tab-kerala" role="tabpanel" aria-labelledby="tab-btn-kerala" class="tabpanel" aria-hidden="true">
+          <div class="gallery-grid">
+            <img src="https://source.unsplash.com/600x360/?kerala,backwaters" alt="Kerala backwaters">
+            <img src="https://source.unsplash.com/600x360/?kerala,houseboat" alt="Houseboat">
+            <img src="https://source.unsplash.com/600x360/?kerala,forest" alt="Kerala forest">
+          </div>
+        </div>
+        <div id="tab-uttarakhand" role="tabpanel" aria-labelledby="tab-btn-uttarakhand" class="tabpanel" aria-hidden="true">
+          <div class="gallery-grid">
+            <img src="https://source.unsplash.com/600x360/?uttarakhand,mountains" alt="Himalayas">
+            <img src="https://source.unsplash.com/600x360/?uttarakhand,temple" alt="Temple">
+            <img src="https://source.unsplash.com/600x360/?uttarakhand,forest" alt="Forest">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section aria-labelledby="testi-title" style="margin-top:26px;">
+      <h2 class="section-title" id="testi-title">What travelers say</h2>
+      <div class="testi">
+        <blockquote class="quote">“Flawless Kashmir experience—great hotels and punctual transfers.” — A. Mehta</blockquote>
+        <blockquote class="quote">“Rajasthan desert camp was unforgettable; perfectly organized.” — S. Khan</blockquote>
+        <blockquote class="quote">“Kerala houseboat and spice tour were superb and relaxing.” — R. Iyer</blockquote>
+      </div>
+    </section>
+
+    <section aria-labelledby="faq-title" style="margin-top:26px;">
+      <h2 class="section-title" id="faq-title">FAQs</h2>
+      <details>
+        <summary>What’s included in packages?</summary>
+        <p>Accommodation with breakfast, transfers, sightseeing per itinerary; flights/train optional add-ons.</p>
+      </details>
+      <details>
+        <summary>How do I customize?</summary>
+        <p>Share dates, budget, and headcount via WhatsApp or email; a tailored plan is sent within 24 hours.</p>
+      </details>
+      <details>
+        <summary>Payment and cancellation</summary>
+        <p>Secure UPI/card payments; flexible date changes available per vendor policy.</p>
+      </details>
+    </section>
+  </main>
+
+  <div class="fab-container" aria-label="Quick contact">
+    <a href="tel:+919820856464" class="fab phone" aria-label="Call">📞</a>
+    <a href="https://wa.me/919820856464?text=Hi%20Dream%20Holidays%2C%20I%27d%20like%20to%20book%20a%20tour." target="_blank" rel="noopener" class="fab whatsapp" aria-label="WhatsApp">💬</a>
+    <a href="mailto:info@dreamholidays.com?subject=Holiday%20Enquiry&body=Hello%2C%20please%20share%20available%20packages%20and%20prices." class="fab email" aria-label="Email">✉️</a>
   </div>
 
-  <h2 id="title">Explore Beautiful Destinations</h2>
-  <div class="gallery" id="gallery"></div>
-
-  <!-- WhatsApp button -->
-  <a class="whatsapp-btn" href="https://wa.me/919876543210" target="_blank">Chat on WhatsApp</a>
-
   <script>
-    const locations = {
-      rajasthan: {
-        name: "Rajasthan",
-        images: [
-          "https://upload.wikimedia.org/wikipedia/commons/1/10/Jaisalmer_Fort.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/f/fb/City_Palace_Jaipur.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/4/41/Thar_Desert.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/c/c9/Hawa_Mahal_2011.jpg"
-        ]
-      },
-      uttarakhand: {
-        name: "Uttarakhand",
-        images: [
-          "https://upload.wikimedia.org/wikipedia/commons/6/64/Nanda_Devi_peak_from_Kausani%2C_Uttarakhand.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/7/7f/Rishikesh_Bridge.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/9/96/Kedarnath_Temple_2019.jpg"
-        ]
-      },
-      kerala: {
-        name: "Kerala",
-        images: [
-          "https://upload.wikimedia.org/wikipedia/commons/5/5b/Houseboat_in_kerala.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/f/f7/Munnar_hillstation_kerala.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/9/90/Kovalam_Beach.jpg"
-        ]
-      },
-      manali: {
-        name: "Manali",
-        images: [
-          "https://upload.wikimedia.org/wikipedia/commons/2/20/Solang_Valley%2C_Manali.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/6/63/Rohtang_Pass.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/5/55/Hadimba_Temple_Manali.jpg"
-        ]
-      },
-      kashmir: {
-        name: "Kashmir",
-        images: [
-          "https://upload.wikimedia.org/wikipedia/commons/7/70/Dal_Lake_Houseboats.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/4/42/Gulmarg_valley.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/d/d7/Snow_clad_Pahalgam.jpg"
-        ]
-      },
-      goa: {
-        name: "Goa",
-        images: [
-          "https://upload.wikimedia.org/wikipedia/commons/f/fc/Baga_Beach_Goa.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/f/f1/Church_of_St_Cajetan_Goa.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/f/f5/Dudhsagar_Waterfalls.jpg"
-        ]
-      }
-    };
-
-    function showLocation() {
-      const selected = document.getElementById("locationSelect").value;
-      const gallery = document.getElementById("gallery");
-      const title = document.getElementById("title");
-
-      if (selected && locations[selected]) {
-        title.textContent = "Explore " + locations[selected].name;
-        gallery.innerHTML = locations[selected].images.map(img => `<img src="${img}" alt="${locations[selected].name}">`).join("");
-      } else {
-        title.textContent = "Explore Beautiful Destinations";
-        gallery.innerHTML = "";
-      }
-    }
+    // Tabs behavior with ARIA
+    (function () {
+      const tablist = document.querySelector('[role="tablist"]');
+      if (!tablist) return;
+      tablist.addEventListener('click', (e) => {
+        const btn = e.target.closest('[role="tab"]');
+        if (!btn) return;
+        const tabs = tablist.querySelectorAll('[role="tab"]');
+        const panels = tablist.parentElement.querySelectorAll('[role="tabpanel"]');
+        tabs.forEach(t => t.setAttribute('aria-selected', String(t === btn)));
+        panels.forEach(p => p.setAttribute('aria-hidden', String(p.id !== btn.getAttribute('aria-controls'))));
+      });
+      // Keyboard support
+      tablist.addEventListener('keydown', (e) => {
+        const tabs = [...tablist.querySelectorAll('[role="tab"]')];
+        const index = tabs.findIndex(t => t.getAttribute('aria-selected') === 'true');
+        if (['ArrowRight','ArrowLeft','Home','End'].includes(e.key)) e.preventDefault();
+        let next = index;
+        if (e.key === 'ArrowRight') next = (index + 1) % tabs.length;
+        if (e.key === 'ArrowLeft') next = (index - 1 + tabs.length) % tabs.length;
+        if (e.key === 'Home') next = 0;
+        if (e.key === 'End') next = tabs.length - 1;
+        if (next !== index) {
+          tabs[next].focus();
+          tabs[next].click();
+        }
+      });
+    })();
   </script>
 </body>
 </html>
