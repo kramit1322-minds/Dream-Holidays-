@@ -1,4 +1,5 @@
-<!DOCTYPE html><html lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -55,7 +56,8 @@
     .btn.primary { background: var(--accent); color: #222; }
     .hero {
       background: linear-gradient(0deg, rgba(0,0,0,0.45), rgba(0,0,0,0.45)),
-        url('https://via.placeholder.com/1600x700?text=India+Travel') center/cover no-repeat;
+        /* Image lives in repo root per screenshot */
+        url('./india_travel_1600x700.jpeg') center/cover no-repeat;
       color: var(--white);
       text-align: center;
       padding: 64px 16px;
@@ -144,6 +146,9 @@
     .phone { background: #0a8a0a; }
     .whatsapp { background: #25D366; }
     .email { background: #e63946; }
+    @media (prefers-reduced-motion: reduce) {
+      * { scroll-behavior: auto; }
+    }
   </style>
 </head>
 <body>
@@ -156,98 +161,170 @@
         <a class="btn primary" href="tel:+919820856464">Call Now</a>
       </nav>
     </div>
-  </header>  <section class="hero" role="banner">
+  </header>
+
+  <section class="hero" role="banner">
     <h1>Curated India Tours</h1>
     <p>Rajasthan forts, Kashmir valleys, Goa beaches, Kerala backwaters, and more—handcrafted itineraries for every budget.</p>
     <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;">
       <a class="btn primary" href="#packages">View Packages</a>
       <a class="btn" href="https://wa.me/919820856464?text=Hi%20Dream%20Holidays%2C%20please%20share%20tour%20packages%20and%20pricing." rel="noopener" target="_blank">Chat on WhatsApp</a>
     </div>
-  </section>  <main class="container">
-    <section id="packages">
-      <h2 class="section-title">Popular Packages</h2>
+  </section>
+
+  <main class="container">
+    <section id="packages" aria-labelledby="packages-title">
+      <h2 class="section-title" id="packages-title">Popular Packages</h2>
       <div class="grid">
         <article class="card">
-          <img src="https://via.placeholder.com/800x500?text=Rajasthan+Tour" alt="Rajasthan Fort tour">
+          <!-- File at repo root -->
+          <img src="./rajasthan_fort_800x500.jpeg" alt="Rajasthan Fort tour" />
           <div class="card-body">
             <h3>Royal Rajasthan (5D/4N)</h3>
             <div class="price">From ₹14,999</div>
             <p>Jaipur, Jodhpur, Jaisalmer with guided fort visits and desert camp.</p>
+            <a class="btn" href="mailto:info@dreamholidays.com?subject=Royal%20Rajasthan%20Enquiry&body=Hi%2C%20please%20share%20itinerary%20and%20pricing%20for%20Royal%20Rajasthan%205D%2F4N.">Email details</a>
           </div>
         </article>
         <article class="card">
-          <img src="https://via.placeholder.com/800x500?text=Kashmir+Tour" alt="Kashmir Valley tour">
+          <img src="./kashmir_valley_800x500.jpeg" alt="Kashmir Valley tour" />
           <div class="card-body">
             <h3>Heavenly Kashmir (6D/5N)</h3>
             <div class="price">From ₹19,999</div>
             <p>Srinagar, Gulmarg, Pahalgam with shikara ride and gondola add-ons.</p>
+            <a class="btn" href="mailto:info@dreamholidays.com?subject=Kashmir%20Package%20Enquiry&body=Hi%2C%20please%20share%20itinerary%20and%20pricing%20for%20Kashmir%206D%2F5N.">Email details</a>
           </div>
         </article>
         <article class="card">
-          <img src="https://via.placeholder.com/800x500?text=Goa+Tour" alt="Goa Beach tour">
+          <img src="./goa_beach_800x500.jpeg" alt="Goa Beach holiday" />
           <div class="card-body">
             <h3>Goa Getaway (4D/3N)</h3>
             <div class="price">From ₹11,499</div>
             <p>North & South Goa sights, optional water sports and cruise dinner.</p>
+            <a class="btn" href="mailto:info@dreamholidays.com?subject=Goa%20Getaway%20Enquiry&body=Hi%2C%20please%20share%20itinerary%20and%20pricing%20for%20Goa%204D%2F3N.">Email details</a>
           </div>
         </article>
         <article class="card">
-          <img src="https://via.placeholder.com/800x500?text=Kerala+Tour" alt="Kerala Backwaters tour">
+          <img src="./kerala_backwaters_800x500.jpeg" alt="Kerala Backwaters tour" />
           <div class="card-body">
             <h3>Kerala Bliss (6D/5N)</h3>
             <div class="price">From ₹18,499</div>
             <p>Munnar, Alleppey houseboat, Thekkady spice trails with cultural show.</p>
+            <a class="btn" href="mailto:info@dreamholidays.com?subject=Kerala%20Bliss%20Enquiry&body=Hi%2C%20please%20share%20itinerary%20and%20pricing%20for%20Kerala%206D%2F5N.">Email details</a>
           </div>
         </article>
       </div>
-    </section><section id="gallery" style="margin-top:26px;">
-  <h2 class="section-title">Gallery</h2>
-  <div class="tabs" data-tabs>
-    <div role="tablist" class="tablist">
-      <button role="tab" aria-selected="true" aria-controls="tab-goa" id="tab-btn-goa">Goa</button>
-      <button role="tab" aria-selected="false" aria-controls="tab-rajasthan" id="tab-btn-rajasthan">Rajasthan</button>
-      <button role="tab" aria-selected="false" aria-controls="tab-kashmir" id="tab-btn-kashmir">Kashmir</button>
-      <button role="tab" aria-selected="false" aria-controls="tab-kerala" id="tab-btn-kerala">Kerala</button>
-      <button role="tab" aria-selected="false" aria-controls="tab-uttarakhand" id="tab-btn-uttarakhand">Uttarakhand</button>
-    </div>
-    <div id="tab-goa" role="tabpanel" aria-hidden="false">
-      <div class="gallery-grid">
-        <img src="https://via.placeholder.com/600x360?text=Goa+Beach" alt="Goa beach">
-        <img src="https://via.placeholder.com/600x360?text=Goa+Sunset" alt="Goa sunset">
-        <img src="https://via.placeholder.com/600x360?text=Old+Goa+Church" alt="Old Goa church">
-      </div>
-    </div>
-    <div id="tab-rajasthan" role="tabpanel" aria-hidden="true">
-      <div class="gallery-grid">
-        <img src="https://via.placeholder.com/600x360?text=Rajasthan+Fort" alt="Rajasthan fort">
-        <img src="https://via.placeholder.com/600x360?text=Rajasthan+Palace" alt="Rajasthan palace">
-        <img src="https://via.placeholder.com/600x360?text=Thar+Desert" alt="Thar desert">
-      </div>
-    </div>
-    <div id="tab-kashmir" role="tabpanel" aria-hidden="true">
-      <div class="gallery-grid">
-        <img src="https://via.placeholder.com/600x360?text=Kashmir+Valley" alt="Kashmir valley">
-        <img src="https://via.placeholder.com/600x360?text=Snow+Views" alt="Snow views">
-        <img src="https://via.placeholder.com/600x360?text=Dal+Lake" alt="Dal lake">
-      </div>
-    </div>
-    <div id="tab-kerala" role="tabpanel" aria-hidden="true">
-      <div class="gallery-grid">
-        <img src="https://via.placeholder.com/600x360?text=Kerala+Backwaters" alt="Kerala backwaters">
-        <img src="https://via.placeholder.com/600x360?text=Houseboat" alt="Houseboat">
-        <img src="https://via.placeholder.com/600x360?text=Kerala+Forest" alt="Kerala forest">
-      </div>
-    </div>
-    <div id="tab-uttarakhand" role="tabpanel" aria-hidden="true">
-      <div class="gallery-grid">
-        <img src="https://via.placeholder.com/600x360?text=Himalayas" alt="Himalayas">
-        <img src="https://via.placeholder.com/600x360?text=Temple" alt="Temple">
-        <img src="https://via.placeholder.com/600x360?text=Forest" alt="Forest">
-      </div>
-    </div>
-  </div>
-</section>
+    </section>
 
+    <section id="gallery" aria-labelledby="gallery-title" style="margin-top:26px;">
+      <h2 class="section-title" id="gallery-title">Gallery</h2>
+      <div class="tabs" data-tabs>
+        <div role="tablist" aria-label="Destinations" class="tablist">
+          <button role="tab" aria-selected="true" aria-controls="tab-goa" id="tab-btn-goa">Goa</button>
+          <button role="tab" aria-selected="false" aria-controls="tab-rajasthan" id="tab-btn-rajasthan">Rajasthan</button>
+          <button role="tab" aria-selected="false" aria-controls="tab-kashmir" id="tab-btn-kashmir">Kashmir</button>
+          <button role="tab" aria-selected="false" aria-controls="tab-kerala" id="tab-btn-kerala">Kerala</button>
+          <button role="tab" aria-selected="false" aria-controls="tab-uttarakhand" id="tab-btn-uttarakhand">Uttarakhand</button>
+        </div>
+        <div id="tab-goa" role="tabpanel" aria-labelledby="tab-btn-goa" class="tabpanel" aria-hidden="false">
+          <div class="gallery-grid">
+            <img src="./goa_beach_800x500.jpeg" alt="Goa beach" />
+            <img src="./goa_beach_800x500.jpeg" alt="Goa sunset" />
+            <img src="./goa_beach_800x500.jpeg" alt="Old Goa church" />
+          </div>
+        </div>
+        <div id="tab-rajasthan" role="tabpanel" aria-labelledby="tab-btn-rajasthan" class="tabpanel" aria-hidden="true">
+          <div class="gallery-grid">
+            <img src="./rajasthan_fort_800x500.jpeg" alt="Rajasthan fort" />
+            <img src="./rajasthan_fort_800x500.jpeg" alt="Rajasthan palace" />
+            <img src="./rajasthan_fort_800x500.jpeg" alt="Thar desert" />
+          </div>
+        </div>
+        <div id="tab-kashmir" role="tabpanel" aria-labelledby="tab-btn-kashmir" class="tabpanel" aria-hidden="true">
+          <div class="gallery-grid">
+            <img src="./kashmir_valley_800x500.jpeg" alt="Kashmir valley" />
+            <img src="./kashmir_valley_800x500.jpeg" alt="Snow views" />
+            <img src="./kashmir_valley_800x500.jpeg" alt="Dal lake" />
+          </div>
+        </div>
+        <div id="tab-kerala" role="tabpanel" aria-labelledby="tab-btn-kerala" class="tabpanel" aria-hidden="true">
+          <div class="gallery-grid">
+            <img src="./kerala_backwaters_800x500.jpeg" alt="Kerala backwaters" />
+            <img src="./kerala_backwaters_800x500.jpeg" alt="Houseboat" />
+            <img src="./kerala_backwaters_800x500.jpeg" alt="Kerala forest" />
+          </div>
+        </div>
+        <div id="tab-uttarakhand" role="tabpanel" aria-labelledby="tab-btn-uttarakhand" class="tabpanel" aria-hidden="true">
+          <div class="gallery-grid">
+            <img src="./kashmir_valley_800x500.jpeg" alt="Himalayas" />
+            <img src="./rajasthan_fort_800x500.jpeg" alt="Temple" />
+            <img src="./kerala_backwaters_800x500.jpeg" alt="Forest" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section aria-labelledby="testi-title" style="margin-top:26px;">
+      <h2 class="section-title" id="testi-title">What travelers say</h2>
+      <div class="testi">
+        <blockquote class="quote">“Flawless Kashmir experience—great hotels and punctual transfers.” — A. Mehta</blockquote>
+        <blockquote class="quote">“Rajasthan desert camp was unforgettable; perfectly organized.” — S. Khan</blockquote>
+        <blockquote class="quote">“Kerala houseboat and spice tour were superb and relaxing.” — R. Iyer</blockquote>
+      </div>
+    </section>
+
+    <section aria-labelledby="faq-title" style="margin-top:26px;">
+      <h2 class="section-title" id="faq-title">FAQs</h2>
+      <details>
+        <summary>What’s included in packages?</summary>
+        <p>Accommodation with breakfast, transfers, sightseeing per itinerary; flights/train optional add-ons.</p>
+      </details>
+      <details>
+        <summary>How do I customize?</summary>
+        <p>Share dates, budget, and headcount via WhatsApp or email; a tailored plan is sent within 24 hours.</p>
+      </details>
+      <details>
+        <summary>Payment and cancellation</summary>
+        <p>Secure UPI/card payments; flexible date changes available per vendor policy.</p>
+      </details>
+    </section>
   </main>
+
+  <div class="fab-container" aria-label="Quick contact">
+    <a href="tel:+919820856464" class="fab phone" aria-label="Call">📞</a>
+    <a href="https://wa.me/919820856464?text=Hi%20Dream%20Holidays%2C%20I%27d%20like%20to%20book%20a%20tour." target="_blank" rel="noopener" class="fab whatsapp" aria-label="WhatsApp">💬</a>
+    <a href="mailto:info@dreamholidays.com?subject=Holiday%20Enquiry&body=Hello%2C%20please%20share%20available%20packages%20and%20prices." class="fab email" aria-label="Email">✉️</a>
+  </div>
+
+  <script>
+    // Tabs behavior with ARIA
+    (function () {
+      const tablist = document.querySelector('[role="tablist"]');
+      if (!tablist) return;
+      tablist.addEventListener('click', (e) => {
+        const btn = e.target.closest('[role="tab"]');
+        if (!btn) return;
+        const tabs = tablist.querySelectorAll('[role="tab"]');
+        const panels = tablist.parentElement.querySelectorAll('[role="tabpanel"]');
+        tabs.forEach(t => t.setAttribute('aria-selected', String(t === btn)));
+        panels.forEach(p => p.setAttribute('aria-hidden', String(p.id !== btn.getAttribute('aria-controls'))));
+      });
+      // Keyboard support
+      tablist.addEventListener('keydown', (e) => {
+        const tabs = [...tablist.querySelectorAll('[role="tab"]')];
+        const index = tabs.findIndex(t => t.getAttribute('aria-selected') === 'true');
+        if (['ArrowRight','ArrowLeft','Home','End'].includes(e.key)) e.preventDefault();
+        let next = index;
+        if (e.key === 'ArrowRight') next = (index + 1) % tabs.length;
+        if (e.key === 'ArrowLeft') next = (index - 1 + tabs.length) % tabs.length;
+        if (e.key === 'Home') next = 0;
+        if (e.key === 'End') next = tabs.length - 1;
+        if (next !== index) {
+          tabs[next].focus();
+          tabs[next].click();
+        }
+      });
+    })();
+  </script>
 </body>
 </html>
